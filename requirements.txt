@@ -1,0 +1,16 @@
+-e git+https://github.com/vaidik/Marketplace.Python/archive/0.0.1.zip#egg=Marketplace
+cssselect==0.8
+distribute==0.6.35
+gevent==0.13.8
+greenlet==0.4.1
+httplib2==0.8
+lxml==3.2.1
+oauth2==1.5.211
+pyquery==1.2.4
+readline==6.2.4.1
+requests==1.2.3
+stevedore==0.8
+virtualenv==1.9.1
+virtualenv-clone==0.2.4
+virtualenvwrapper==3.7
+wsgiref==0.1.2
