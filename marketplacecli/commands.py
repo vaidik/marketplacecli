@@ -19,7 +19,7 @@ finally:
 DOMAINS = {
     'dev': 'marketplace-dev.allizom.org',
     'stage': 'marketplace.allizom.org',
-    'prod': 'marketplace.mozilla.org',
+    'prod': 'marketplace.firefox.com',
 }
 
 
