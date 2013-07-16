@@ -1,0 +1,13 @@
+dev:
+  oauth:
+  - consumer_key: <key-1>
+    consumer_secret: <secret-1>
+  - consumer_key: <key-2>
+    consumer_secret: <secret-2>
+
+stage:
+  oauth:
+  - consumer_key: <key-1>
+    consumer_secret: <secret-1>
+  - consumer_key: <key-2>
+    consumer_secret: <secret-
