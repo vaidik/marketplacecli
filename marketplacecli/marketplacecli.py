@@ -3,7 +3,7 @@ Marketplace CLI - to make everyday things easy to work with Marketplace.
 """
 
 import argparse
-import ConfigParser
+import yaml
 
 from os import path
 from . import commands
@@ -38,18 +38,23 @@ def main():
     args = parser.parse_args()
 
     if args.config is None:
-        if path.exists('marketplacecli.ini'):
-            args.config = 'marketplacecli.ini'
-        elif path.exists(path.join(path.expanduser('~'), 'marketplacecli.ini')):
-            args.config = path.join(path.expanduser('~'), 'marketplacecli.ini')
+        if path.exists('marketplacecli.yml'):
+            args.config = 'marketplacecli.yml'
+        elif path.exists(path.join(path.expanduser('~'),
+                         'marketplacecli.yml')):
+            args.config = path.join(path.expanduser('~'), 'marketplacecli.yml')
         else:
-            parser.error('marketplacecli.ini not found. Use --config to provide '
-                         'path or create a marketplace.ini in your home'
-                         'directory or working directory.')
+            parser.error('marketplacecli.yml not found. Use --config to '
+                         'provide path or create a marketplace.yml in your '
+                         'home directory or working directory.')
 
-    config = ConfigParser.ConfigParser()
-    config.read(path.abspath(args.config))
-    args.config = config
+    with open(args.config, 'r') as config_file:
+        config = yaml.load(config_file.read())
+
+    if config.get(args.env, None) is None:
+        raise Exception('Configuration for "%s" environment is missing. Add '
+                        'configuration to marketplace.yml file.' % args.env)
+    args.config = config.get(args.env)
 
     # do the work
     args.func(args)

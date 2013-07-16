@@ -24,12 +24,15 @@ DOMAINS = {
 
 
 def get_client(args):
-    config = args.config
+    oauth = args.config.get('oauth', None)
+    if oauth is None:
+        raise Exception('OAuth keys for "%s" environment are missing. Add them'
+                        ' to your marketplacecli.yml file.' % args.env)
+    consumer_secret = oauth[0]['consumer_secret']
+    consumer_key = oauth[0]['consumer_key']
     client = Client(domain=DOMAINS[args.env],
-                    auth=OAuth(consumer_secret=config.get('oauth',
-                                                          'consumer_secret'),
-                               consumer_key=args.config.get('oauth',
-                                                            'consumer_key')))
+                    auth=OAuth(consumer_secret=consumer_secret,
+                               consumer_key=consumer_key))
     return client
 
 
@@ -81,7 +84,7 @@ def create_app(args):
     signal.signal(signal.SIGINT, sigint_handler)
 
     threads = []
-    for i in range(3):
+    for i in range(1):
         t = ThreadCreateApp(queue)
         t.setDaemon(True)
         t.start()

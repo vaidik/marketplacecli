@@ -35,6 +35,7 @@ def create_app(client, price, categories=None):
     app['support_email'] = 'test@mozilla.com'
     app['device_types'] = ['firefoxos']
     app['categories'] = categories or [157, 158]
+    app['regions'] = ['es']
     response = client.apps.update_app(app['id'], app)
     assert response.status_code == 202, 'Unable to update app details.'
 
