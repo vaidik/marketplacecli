@@ -15,14 +15,17 @@ python setup.py install
 ## Configuration
 
 `marketplacecli` requires OAuth tokens to communicate with the API. You may
-put them in a file called `marketplacecli.ini` either in your working
+put them in a file called `marketplacecli.yml` either in your working
 directory or in your home directory. You may also use the `--config` argument
 to provide the path of the config file everytime you run `marketplacecli`.
+
+**Note**:  `marketplacecli.yml` follows [YAML][Y] format.
 
 A [sample configuration][mc] has been provided in the repository which you may copy
 to your home directory or working directory.
 
-[mc]: https://github.com/vaidik/marketplacecli/blob/master/marketplacecli.ini
+[mc]: https://github.com/vaidik/marketplacecli/blob/master/marketplacecli.yml
+[Y]: http://en.wikipedia.org/wiki/YAML
 
 ## Usage
 
